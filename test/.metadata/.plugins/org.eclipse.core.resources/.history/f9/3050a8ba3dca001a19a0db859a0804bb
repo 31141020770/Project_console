@@ -1,0 +1,25 @@
+package example_vending_machine;
+
+import java.util.Scanner;
+
+public class vending_machine_version_2 {
+	public static void main(String[] args) {
+		while (true) {
+			String drink = "";
+			Scanner scanner = new Scanner(System.in);
+			System.out.println("input money: ");
+			int money = scanner.nextInt();
+			if (money > 100) {
+				System.out.println("select drink");
+				drink = scanner.next();
+			}else {
+				System.out.println("input money: ");
+			}
+			System.out.println("drink: " + drink);
+		}
+	}
+
+	public static int inputMoney(int money) {
+		return 1;
+	}
+}

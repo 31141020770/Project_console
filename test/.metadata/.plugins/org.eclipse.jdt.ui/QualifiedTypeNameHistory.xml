@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="javax.rmi.CORBA.Util"/>
+<fullyQualifiedTypeName name="javax.swing.plaf.basic.BasicInternalFrameTitlePane.IconifyAction"/>
+<fullyQualifiedTypeName name="javax.swing.text.StyledEditorKit.BoldAction"/>
+<fullyQualifiedTypeName name="java.lang.Boolean"/>
+<fullyQualifiedTypeName name="org.omg.CORBA.PUBLIC_MEMBER"/>
+<fullyQualifiedTypeName name="javax.swing.text.AbstractDocument.BranchElement"/>
+<fullyQualifiedTypeName name="java.util.Map"/>
+<fullyQualifiedTypeName name="java.util.Scanner"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="java.awt.List"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="java.lang.ArrayIndexOutOfBoundsException"/>
+<fullyQualifiedTypeName name="java.util.Queue"/>
+<fullyQualifiedTypeName name="java.util.LinkedList"/>
+<fullyQualifiedTypeName name="Vending_Machine_3_machine.interfaceMachine.IMachine3Computer"/>
+<fullyQualifiedTypeName name="Vending_Machine_3_machine.interfaceMachine.IMachine2Food"/>
+<fullyQualifiedTypeName name="Vending_Machine_3_machine.interfaceMachine.IMachine1Drink"/>
+<fullyQualifiedTypeName name="Vending_Machine_3_machine.abstractMachine.abtractMachine"/>
+<fullyQualifiedTypeName name="javax.management.remote.SubjectDelegationPermission"/>
+<fullyQualifiedTypeName name="java.lang.Override"/>
+<fullyQualifiedTypeName name="java.text.BreakIterator"/>
+<fullyQualifiedTypeName name="java.util.HashMap"/>
+<fullyQualifiedTypeName name="java.lang.String"/>
+<fullyQualifiedTypeName name="java.lang.Integer"/>
+<fullyQualifiedTypeName name="Vending_Machine_3_machine.machine_1_drink"/>
+<fullyQualifiedTypeName name="Vending_Machine_3_machine.main.order"/>
+<fullyQualifiedTypeName name="Vending_Machine_3_machine.interfaceMachine.IMachine"/>
+<fullyQualifiedTypeName name="Vending_Machine_3_machine.interfaceMachine.impl.Machine"/>
+<fullyQualifiedTypeName name="java.io.FileInputStream"/>
+<fullyQualifiedTypeName name="java.io.FileOutputStream"/>
+<fullyQualifiedTypeName name="java.lang.Void"/>
+<fullyQualifiedTypeName name="java.lang.Runnable"/>
+<fullyQualifiedTypeName name="java.util.concurrent.CountDownLatch"/>
+<fullyQualifiedTypeName name="java.lang.StringBuffer"/>
+<fullyQualifiedTypeName name="Vending_Machine_3_machine.Thread2.thread"/>
+</qualifiedTypeNameHistroy>

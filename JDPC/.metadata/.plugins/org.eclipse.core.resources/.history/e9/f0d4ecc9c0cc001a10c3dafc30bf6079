@@ -1,0 +1,6 @@
+package test;
+
+public class SV {
+	private String name;
+	private String hotenString;
+}

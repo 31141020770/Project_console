@@ -1,0 +1,18 @@
+package Vending_Machine_3_machine.Thread2;
+
+public class thread implements Runnable{
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		try {
+			Thread.sleep(50);
+			System.out.println("your lucky");
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+}

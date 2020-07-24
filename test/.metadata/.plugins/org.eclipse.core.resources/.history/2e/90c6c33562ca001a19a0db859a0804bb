@@ -1,0 +1,5 @@
+package Vending_Machine_3_machine.interfaceMachine;
+
+public interface IMachine1Drink {
+
+}

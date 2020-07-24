@@ -1,0 +1,10 @@
+package Vending_Machine_3_machine;
+
+public class machine_main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

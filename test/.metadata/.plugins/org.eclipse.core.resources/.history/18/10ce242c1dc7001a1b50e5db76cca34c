@@ -1,0 +1,21 @@
+package test_drink_or_notdrink;
+import java.util.Scanner;
+public class test {
+
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("input = ");
+		for (int i = 0; i < 10; i++) {
+			
+			int a = scanner.nextInt();
+			System.out.println(i +"x 3 =" + i*3);
+		}
+		System.out.println();
+		int i = 0;
+		while (i >0) {
+						
+		}
+		scanner.close();
+	}
+
+}

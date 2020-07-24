@@ -1,0 +1,36 @@
+package test;
+
+public class HCN {
+	private double cd;
+	private double cr;
+	public double getCd() {
+		return cd;
+	}
+	HCN(double cd, double cr) {
+		this.cd = cd;
+		this.cr = cr;
+	}
+	HCN(double cd){
+		this.cd = cd;
+	}
+	public void setCd(double cd) {
+		this.cd = cd;
+	}
+	public double getCr() {
+		return cr;
+	}
+	public void setCr(double cr) {
+		this.cr = cr;
+	}
+	
+	public double DT(double cd, double cr) {
+		return cd * cr;
+	}
+	public HCN() {
+		// TODO Auto-generated constructor stub
+	}
+	public void xuat() {
+		HCN aHcn = new HCN();
+		System.out.println(DT(cd, cr));
+	}
+}

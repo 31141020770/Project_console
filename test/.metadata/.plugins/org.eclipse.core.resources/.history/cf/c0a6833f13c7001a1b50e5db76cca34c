@@ -1,0 +1,16 @@
+package test_drink_or_notdrink;
+import java.util.Scanner;
+public class test {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner inputScanner = new Scanner(System.in);
+		String name = inputScanner.nextLine();
+		if(name == "fruit" || name == "tra sua" || name == "caffee") {
+			System.out.println("drink");
+		} else {
+			System.out.println("not drink");
+		}
+	}
+
+}

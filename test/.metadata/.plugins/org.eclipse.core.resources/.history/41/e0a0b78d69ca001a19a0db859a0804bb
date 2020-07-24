@@ -1,0 +1,7 @@
+package Vending_Machine_3_machine;
+
+import Vending_Machine_3_machine.abstractMachine.abtractMachine;
+
+public class machine_2_food extends abtractMachine{
+
+}

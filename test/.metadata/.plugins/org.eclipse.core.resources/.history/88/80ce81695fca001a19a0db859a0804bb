@@ -1,0 +1,63 @@
+package Vending_Machine_3_machine.abstractMachine;
+
+import java.util.HashMap;
+
+public abstract class abtractMachine {
+	static int money = 0;
+	String[] product;
+	int[] productPrice;
+	HashMap<String, Integer> orderProduct = new HashMap<>();
+	Boolean checkMore = true;
+	int countProduct1;
+	int countProduct2;
+	int countProduct3;
+	public static int getMoney() {
+		return money;
+	}
+	public static void setMoney(int money) {
+		abtractMachine.money = money;
+	}
+	public String[] getProduct() {
+		return product;
+	}
+	public void setProduct(String[] product) {
+		this.product = product;
+	}
+	public int[] getProductPrice() {
+		return productPrice;
+	}
+	public void setProductPrice(int[] productPrice) {
+		this.productPrice = productPrice;
+	}
+	public HashMap<String, Integer> getOrderProduct() {
+		return orderProduct;
+	}
+	public void setOrderProduct(HashMap<String, Integer> orderProduct) {
+		this.orderProduct = orderProduct;
+	}
+	public Boolean getCheckMore() {
+		return checkMore;
+	}
+	public void setCheckMore(Boolean checkMore) {
+		this.checkMore = checkMore;
+	}
+	public int getCountProduct1() {
+		return countProduct1;
+	}
+	public void setCountProduct1(int countProduct1) {
+		this.countProduct1 = countProduct1;
+	}
+	public int getCountProduct2() {
+		return countProduct2;
+	}
+	public void setCountProduct2(int countProduct2) {
+		this.countProduct2 = countProduct2;
+	}
+	public int getCountProduct3() {
+		return countProduct3;
+	}
+	public void setCountProduct3(int countProduct3) {
+		this.countProduct3 = countProduct3;
+	}
+	
+}

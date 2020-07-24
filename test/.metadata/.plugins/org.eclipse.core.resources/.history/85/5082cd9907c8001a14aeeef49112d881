@@ -1,0 +1,10 @@
+package example_vending_machine;
+
+public class vending_machine {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

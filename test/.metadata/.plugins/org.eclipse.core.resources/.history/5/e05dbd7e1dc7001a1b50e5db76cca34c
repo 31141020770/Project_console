@@ -1,0 +1,32 @@
+package test_drink_or_notdrink;
+import java.util.Scanner;
+public class test {
+
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		int a = scanner.nextInt();
+		String b = scanner.next();
+		int c = scanner.nextInt();
+		int s =0;
+		if (b.equals("+")) {
+			 s = a + c;
+		}
+		if (b.equals("-")) {
+			 s = a - c;
+		}
+		if (b.equals("*")) {
+			 s = a * c;
+		}
+		if (b.equals("/")) {
+			 s = a / c;
+		}
+		
+		System.out.println(s);
+		int i = 0;
+		while (i >0) {
+						
+		}
+		scanner.close();
+	}
+
+}

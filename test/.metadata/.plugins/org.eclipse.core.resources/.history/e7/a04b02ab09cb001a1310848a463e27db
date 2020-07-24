@@ -1,0 +1,11 @@
+package Vending_Machine_3_machine.Thread2;
+
+public class thread implements Runnable{
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		System.out.println("your lucky");
+	}
+
+}

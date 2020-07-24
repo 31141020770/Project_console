@@ -1,0 +1,1 @@
+Your Bill your order: [Ljava.lang.String;@55f96302[Ljava.lang.String;@55f96302-count: [I@3d4eac69your order: [Ljava.lang.String;@55f96302[Ljava.lang.String;@55f96302-count: [I@3d4eac69your chance: 500
