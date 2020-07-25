@@ -16,6 +16,7 @@ public class ControlAndManagement {
 		switch (key) {
 		case "1":{
 			System.out.println("1");
+			
 			break;
 		}
 		case "2":{
