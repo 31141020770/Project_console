@@ -1,0 +1,13 @@
+package project.management.controlandmanagement.impl;
+
+import project.management.controlandmanagement.IStatistics;
+
+public class Statistic implements IStatistics{
+
+	@Override
+	public void findAllProductOfAMachine(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

@@ -1,30 +1,43 @@
 package project.management.service.impl;
 
+import java.util.List;
+
+import project.management.entity.ProductEntity;
+import project.management.repository.IProductRepository;
+import project.management.repository.impl.ProductRepository;
 import project.management.service.IProductService;
 
 public class ProductService implements IProductService {
+	IProductRepository productRepository = new ProductRepository();
 
 	@Override
-	public boolean addProduct() {
-		boolean result = true;
-
-		return result;
+	public ProductEntity addProduct(ProductEntity productEntity) {
+		int newId = productRepository.add(productEntity);
+		return productRepository.findOne(newId);
 	}
 
 	@Override
-	public boolean updateProduct() {
+	public ProductEntity updateProduct(ProductEntity productEntity) {
+		productRepository.update(productEntity);
+		return productRepository.findOne(productEntity.getId());
 
-		boolean result = true;
-
-		return result;
 	}
 
 	@Override
-	public boolean deleteProduct() {
+	public void deleteProduct(int id) {
+		// TODO Auto-generated method stub
 
-		boolean result = true;
+	}
 
-		return result;
+	@Override
+	public List<ProductEntity> findAll() {
+		return productRepository.findAll();
+		
+	}
+
+	@Override
+	public ProductEntity findOneById(int id) {
+		return productRepository.findOne(id);
 	}
 
 }

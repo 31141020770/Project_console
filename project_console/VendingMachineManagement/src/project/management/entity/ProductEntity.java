@@ -6,6 +6,9 @@ public class ProductEntity {
 	private int price;
 	private int total;
 	private int status;
+	private int storeMachineId;
+	
+	
 	public int getId() {
 		return id;
 	}
@@ -36,7 +39,12 @@ public class ProductEntity {
 	public void setStatus(int status) {
 		this.status = status;
 	}
+	public int getStoreMachineId() {
+		return storeMachineId;
+	}
+	public void setStoreMachineId(int storeMachineId) {
+		this.storeMachineId = storeMachineId;
+	}
+	
 
-	
-	
 }

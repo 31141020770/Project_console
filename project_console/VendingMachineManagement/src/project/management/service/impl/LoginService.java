@@ -1,17 +1,17 @@
 package project.management.service.impl;
 
 import project.management.entity.UserEntity;
-import project.management.repository.UserRepository;
-import project.management.repository.impl.UserRepositoryImpl;
+import project.management.repository.IUserRepository;
+import project.management.repository.impl.UserRepository;
 import project.management.service.ILoginService;
 
 public class LoginService implements ILoginService {
-	UserRepository userRepository = new UserRepositoryImpl();
+	IUserRepository userRepository = new UserRepository();
 
 	@Override
 	public String login(String user, String password) {
 		UserEntity userEntity = new UserEntity();
-		String loginFalse = "login false";
+		String loginFalse = "false";
 		userEntity = userRepository.findbyuserNameAndPassword(user);
 		if (password.equals(userEntity.getPassword()) && userEntity.getRole().equals("ADMIN")) {
 			

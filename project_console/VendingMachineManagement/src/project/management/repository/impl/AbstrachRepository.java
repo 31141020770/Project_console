@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,29 +17,28 @@ public class AbstrachRepository<T> implements GenericRepository<T> {
 	PreparedStatement ptmt = null;
 	ResultSet resultSet = null;
 
-
 	private Connection getConnection() throws SQLException {
 		Connection conn;
 		conn = ConnectionFatory.getInstance().getConnection();
 		return conn;
 	}
-	private void setParameter(PreparedStatement statement, Object... parameters) {
+
+	private void setParameter(PreparedStatement ptmt, Object... parameters) {
 		try {
 			for (int i = 0; i < parameters.length; i++) {
 				Object parameter = parameters[i];
 				int index = i + 1;
 				if (parameter instanceof Integer) {
-					statement.setLong(index, (Integer) parameter);
+					ptmt.setInt(index, (int) parameter);
 				} else if (parameter instanceof String) {
-					statement.setString(index, (String) parameter);
-				} else if (parameter instanceof Integer) {
-					statement.setInt(index, (Integer) parameter);
+					ptmt.setString(index, (String) parameter);
 				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
+
 	@Override
 	public List<T> query(String sql, RowMapper<T> rowMapper, Object... parameters) {
 		List<T> results = new ArrayList<>();
@@ -51,8 +51,7 @@ public class AbstrachRepository<T> implements GenericRepository<T> {
 				results.add(rowMapper.mapRow(resultSet));
 			}
 			return results;
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (SQLException e) {
 			return null;
 		} finally {
 			try {
@@ -73,18 +72,89 @@ public class AbstrachRepository<T> implements GenericRepository<T> {
 				return null;
 			}
 		}
-		
+
 	}
 
 	@Override
-	public int update(String sql, Object... parameters) {
-		// TODO Auto-generated method stub
-		return 0;
+	public void update(String sql, Object... parameters) {
+		try {
+			connection = getConnection();
+			connection.setAutoCommit(false);
+			ptmt = connection.prepareStatement(sql);
+			setParameter(ptmt, parameters);
+			ptmt.executeUpdate();
+			connection.commit();
+		} catch (SQLException e) {
+			if (connection != null) {
+
+				try {
+					System.out.println("update false!!! please input again or out!!! ");
+					connection.rollback();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		} finally {
+			try {
+				if (resultSet != null) {
+					resultSet.close();
+				}
+				if (ptmt != null) {
+					ptmt.close();
+				}
+				if (connection != null) {
+					connection.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	@Override
 	public int insert(String sql, Object... parameters) {
-		// TODO Auto-generated method stub
+		try {
+			int id = 0;
+			connection = getConnection();
+			connection.setAutoCommit(false);
+			ptmt = connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+			setParameter(ptmt, parameters);
+			ptmt.executeUpdate();
+			resultSet = ptmt.getGeneratedKeys();
+			if (resultSet.next()) {
+				id = resultSet.getInt(1);
+			}
+			connection.commit();
+			return id; 
+		} catch (SQLException e) {
+			if (connection != null) {
+				try {
+					System.out.println("insert false!!! please input again or out!!! ");
+					connection.rollback();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+		} finally {
+			try {
+				if (resultSet != null) {
+					resultSet.close();
+				}
+				if (ptmt != null) {
+					ptmt.close();
+				}
+				if (connection != null) {
+					connection.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		return 0;
 	}
 

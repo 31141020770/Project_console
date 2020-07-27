@@ -1,5 +1,12 @@
 package project.management.service;
 
-public interface IStatisticsService {
+import java.util.List;
 
+import project.management.entity.ProductEntity;
+import project.management.entity.StoreMachineEntity;
+
+public interface IStatisticsService {
+	List<ProductEntity> findByMachine(int machineID);
+	List<StoreMachineEntity> findAllMachine ();
+	ProductEntity findMinByProductprice(int id);
 }

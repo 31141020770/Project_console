@@ -1,0 +1,7 @@
+package project.management.controlandmanagement.impl;
+
+import project.management.controlandmanagement.IStatistics;
+
+public class Statistic implements IStatistics{
+
+}

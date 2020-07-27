@@ -13,9 +13,10 @@ public class ProductMapper implements RowMapper<ProductEntity> {
 			ProductEntity productEntity = new ProductEntity();
 			productEntity.setId(rs.getInt("id"));
 			productEntity.setName(rs.getString("name"));
-			productEntity.setPrice(rs.getInt("prics"));
+			productEntity.setPrice(rs.getInt("price"));
 			productEntity.setTotal(rs.getInt("total"));
-			productEntity.setStatus(rs.getInt("status"));
+			productEntity.setStatus(1);
+			productEntity.setStoreMachineId(rs.getInt("storemachineid"));
 			return productEntity;
 		} catch (SQLException e) {
 			return null;
