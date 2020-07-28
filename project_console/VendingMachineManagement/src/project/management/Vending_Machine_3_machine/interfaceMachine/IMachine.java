@@ -12,4 +12,5 @@ public interface IMachine {
 	int information(int productPrice, String product, int money);
 	void order_machine(boolean checkMore, int money,List<ProductEntity> productEntities,HashMap<String,Integer> orderProduct, StoreMachineEntity storeMachineEntity,IMachine machine );
 	void recept(List<ProductEntity> product, int[] count, String chance);
+	void saveBill(List<ProductEntity> productEntities, HashMap<String, Integer> orderProduct);
 }

@@ -14,14 +14,15 @@ import project.management.service.impl.StatisticsService;
 
 public class machine_drink_food__computer {
 	public machine_drink_food__computer(int money) {
-		IMachine machine = new Machine();
-		IStatisticsService statisticsService = new StatisticsService();
+
 		List<ProductEntity> productEntities = new ArrayList<>();
 		List<StoreMachineEntity> storeMachineEntities = new ArrayList<>();
 		ProductEntity product = new ProductEntity();
 		HashMap<String, Integer> orderProduct = new HashMap<>();
-		storeMachineEntities = statisticsService.findAllMachine();
 		Scanner scan = new Scanner(System.in);
+		IMachine machine = new Machine();
+		IStatisticsService statisticsService = new StatisticsService();
+		storeMachineEntities = statisticsService.findAllMachine();
 		System.out.println("select machine: ");
 		System.out.println("--------------------------MENU---------------------------");
 		for (int i = 0; i < storeMachineEntities.size(); i++) {
@@ -36,8 +37,9 @@ public class machine_drink_food__computer {
 		}
 		boolean checkMore = true;
 		System.out.println("--------------------------------------------------------");
-		System.out.println("input id machine:");
+		System.out.println("input id machine:");		
 		int idMachine = scan.nextInt();
+		productEntities = statisticsService.findByMachine(storeMachineEntities.get(idMachine).getId());
 		machine.order_machine(checkMore, money, productEntities, orderProduct, storeMachineEntities.get(idMachine),machine);
 	}
 

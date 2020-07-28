@@ -7,13 +7,20 @@ import java.util.Scanner;
 
 import project.management.Vending_Machine_3_machine.Thread2.thread;
 import project.management.Vending_Machine_3_machine.interfaceMachine.IMachine;
+import project.management.entity.OrderItemEntity;
+import project.management.entity.OrderItemProductEntity;
 import project.management.entity.ProductEntity;
 import project.management.entity.StoreMachineEntity;
+import project.management.repository.IOrderItemProductRepository;
+import project.management.repository.IOrderItemRepository;
+import project.management.repository.impl.OrderItemProductRepository;
+import project.management.repository.impl.OrderItemRepository;
 import project.management.service.IStatisticsService;
 import project.management.service.impl.StatisticsService;
 
 public class Machine implements IMachine {
-
+	IOrderItemProductRepository orderItemProductRepository = new OrderItemProductRepository();
+	IOrderItemRepository OrderItemRepository = new OrderItemRepository();
 	@Override
 	public boolean test_Product(String selectProduct, String product) {
 		return selectProduct.equals(product);
@@ -80,6 +87,7 @@ public class Machine implements IMachine {
 					if (checkMoreString.equals("y")) {
 
 					} else {
+						int moneyTotal = 0;
 						int[] count = new int[productEntities.size()];
 						System.out.println("your chance: " + money + " good bye");
 						System.out.println("product you buy: ");
@@ -87,20 +95,23 @@ public class Machine implements IMachine {
 							if (orderProduct.get(productEntities.get(i).getName()) > 0) {
 								if (orderProduct.get(productEntities.get(i).getName()) > 2) {
 									/*
-									 * ------------------thread 2 when customer buy > 2 product have same name
-									 * -----------------
+									 thread 2 when customer buy > 2 product have same name
 									 */
 
 									thread threads = new thread();
 									threads.run();
 								}
+								
 								System.out.println(productEntities.get(i).getName() + ": "
 										+ orderProduct.get(productEntities.get(i).getName()));
 								count[i] = orderProduct.get(productEntities.get(i).getName());
-
+								moneyTotal += productEntities.get(i).getPrice() * orderProduct.get(productEntities.get(i).getName());
+								System.out.println("total: " + moneyTotal);
 							}
 						}
+						saveBill(productEntities, orderProduct);
 						recept(productEntities, count, Integer.toString(money));
+						
 						checkMore = false;
 					}
 
@@ -145,6 +156,29 @@ public class Machine implements IMachine {
 		} catch (Exception e) {
 			System.out.println(e);
 		}
+	}
+
+	@Override
+	public void saveBill(List<ProductEntity> productEntities,HashMap<String, Integer> orderProduct) {
+		int moneyTotal = 0;
+		
+		OrderItemEntity  orderItemEntity = new OrderItemEntity();
+		OrderItemProductEntity orderItemProductEntity = new OrderItemProductEntity();
+		for (int i = 0; i < productEntities.size(); i++) {
+			if (orderProduct.get(productEntities.get(i).getName()) > 0) {
+				moneyTotal += productEntities.get(i).getPrice() * orderProduct.get(productEntities.get(i).getName());
+			}
+		}
+		orderItemEntity.setMoneytotal(moneyTotal);
+		orderItemEntity.setStatus(1);
+		orderItemEntity.setStoremachineid(productEntities.get(0).getStoreMachineId());
+		int orderItemId = OrderItemRepository.add(orderItemEntity);
+		for (int i = 0; i < productEntities.size(); i++) {
+			orderItemProductEntity.setCountOrdered(orderProduct.get(productEntities.get(i).getName()));
+			orderItemProductEntity.setOrderid(orderItemId);
+			orderItemProductEntity.setProductid(productEntities.get(i).getId());
+			orderItemProductRepository.addOrderItemProduct(orderItemProductEntity);
+		}	
 	}
 
 }

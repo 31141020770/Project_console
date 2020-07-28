@@ -21,7 +21,7 @@ public class ProductRepository extends AbstrachRepository<ProductEntity> impleme
 		StringBuilder sql = new StringBuilder("UPDATE product ");
 		sql.append(" SET name = ?, price = ?, total = ?");
 		sql.append(" WHERE id = ?");
-		update(sql.toString(), productEntity.getName(), productEntity.getPrice(), productEntity.getTotal());
+		update(sql.toString(), productEntity.getName(), productEntity.getPrice(), productEntity.getTotal(), productEntity.getId());
 		
 	}
 

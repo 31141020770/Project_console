@@ -4,8 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import org.omg.CORBA.portable.ValueBase;
+
 import project.management.controlandmanagement.IProduct;
 import project.management.controlandmanagement.IStatistics;
+import project.management.entity.OrderItemEntity;
+import project.management.entity.OrderItemProductEntity;
 import project.management.entity.ProductEntity;
 import project.management.entity.StoreMachineEntity;
 import project.management.service.IStatisticsService;
@@ -15,6 +19,7 @@ public class Statistic implements IStatistics {
 	IStatisticsService statisticsService = new StatisticsService();
 	Scanner scan = new Scanner(System.in);
 	IProduct product = new Product();
+
 	@Override
 	public void statistics() {
 		System.out.println("welcome to Find option !!!");
@@ -32,11 +37,11 @@ public class Statistic implements IStatistics {
 			break;
 		}
 		case "2": {
- 
+			finance();
 			break;
 		}
 		case "3": {
-
+			
 			break;
 		}
 		case "4": {
@@ -50,6 +55,8 @@ public class Statistic implements IStatistics {
 			break;
 		}
 		default:
+			System.out.println("you input wrong please unput again");
+			statistics();
 			break;
 		}
 	}
@@ -81,6 +88,135 @@ public class Statistic implements IStatistics {
 			System.out.println("  || product userid: " + storeMachineEntities.get(i).getUserid());
 		}
 		System.out.println("------------------------------------");
+	}
+	@Override
+	public void graph(List<StoreMachineEntity> storeMachineEntities, int sumAll) {
+		String[][] graph = new String[12][30];
+		String [] nameGraph = new String[20];
+		int graph_1 = storeMachineEntities.get(0).getSum() * 100 / sumAll;
+		int graph_2 = storeMachineEntities.get(1).getSum() * 100 / sumAll;
+		int graph_3 = storeMachineEntities.get(2).getSum() * 100 / sumAll;
+		for (int i = 0; i < graph.length; i++) {
+			for (int j = 0; j < 30; j++) {				
+					graph[i][j] = "  ";
+			}
+		}
+		for (int i = 0; i < 30; i++) {
+			graph[11][i] = "*";
+		}
+		for (int i = 0; i < 12; i++) {
+			graph[i][0] = "*";
+		}
+		graph[0][0] = "^";
+		for (int i = 11; i >= 11 - graph_1/10 ; i--) {
+			graph[i][3] = "**";
+		}
+		for (int i = 11; i >= 11 - graph_2/10 ; i--) {
+			graph[i][8] = "**";
+		}
+		for (int i = 11; i >= 11 - graph_3/10 ; i--) {
+			graph[i][13] = "**";
+		}
+		graph[0][0] = "^";
+		graph[0][1] = "Sum Money ";
+		graph[0][2] = Integer.toString(sumAll);
+		for (int i = 0; i < 12; i++) {
+			for (int j = 0; j < 30; j++) {
+				System.out.print(graph[i][j]);
+			}
+			System.out.println();
+		}
+		
+		for (int i = 0; i < nameGraph.length; i++) {
+			nameGraph[i] = " ";
+			nameGraph[3] = "  M1   ";
+			nameGraph[6] = "   M2   ";
+			nameGraph[9] = "   M3";
+			System.out.print(nameGraph[i]);
+		}
+		/* graph[9- graph_1][3] = "*"; */
+		System.out.print("sum money: M1: "+ graph_1 + "% || " + storeMachineEntities.get(0).getSum()+"$" + " ---  --- ");
+		System.out.print(" M2: "+ graph_2 + "% || " + storeMachineEntities.get(1).getSum()+"$" + " ---  --- ");
+		System.out.println(" M3: "+ graph_3 + "% || " + storeMachineEntities.get(2).getSum()+"$");
+		/*----------------- graph------------------------------ */
+		System.out.println();
+		System.out.println("-------------------	Graph --------------------");
+
+		/*----------------- graph------------------------------ */
+	}
+	@Override
+	public void finance() {
+		
+		System.out.println("welcome to 4.2 finance");
+		System.out.println("1.sum of money is sold each machine, ProductTotal was sold of this machine "
+				+ "|| bil of a machine ||");
+		System.out.println("2.graph: money total is sold of each machine");
+		System.out.println("3. out to Find option");
+		System.out.println("select 1 or 2");
+		String option = scan.next();
+		switch (option) {
+		case "1": {
+			System.out.println("input machineid to select: 1 or 2 or 3 . . .");
+			String id = scan.next();
+			int max = statisticsService.findAllMachine().size();
+			if (Integer.parseInt(id) < max) {
+				List<OrderItemEntity> orderItemEntity = new ArrayList<>();
+				orderItemEntity = statisticsService.findOrderitemByMachineid(Integer.parseInt(id));
+
+				int moneySum = 0;
+				int productTotal = 0;
+				for (int i = 0; i < orderItemEntity.size(); i++) {
+					moneySum += orderItemEntity.get(i).getMoneytotal();
+					List<OrderItemProductEntity> orderItemProductEntities = statisticsService
+							.findProductByOrderitem(orderItemEntity.get(i).getId());
+					for (OrderItemProductEntity order : orderItemProductEntities) {
+						productTotal += order.getCountOrdered();
+					}
+				}
+				System.out.println();
+				System.out.println("-----------------option 1----------------------");
+				System.out.println();
+				System.out.println("sum: " + moneySum + "  ||  " + "bill count: " + orderItemEntity.size()
+						+ " ||   ProductTotal: " + productTotal);
+				System.out.println();
+				System.out.println("-----------------option 1----------------------");
+				System.out.println();
+
+				
+
+			} else {
+				System.out.println("you input wrong id machine program out to 4.2 finance");
+				finance();
+			}
+			finance();
+			break;
+		}
+		case "2": {
+			int sumAll= 0;
+			List<StoreMachineEntity> storeMachineEntities= statisticsService.findAllMachine();
+			for (int i = 0; i < storeMachineEntities.size(); i++) {			
+				List<OrderItemEntity> orderItemEntities = statisticsService.findOrderitemByMachineid(storeMachineEntities.get(i).getId());
+				int sum = 0;
+				for (OrderItemEntity order : orderItemEntities) {
+					sum += order.getMoneytotal();
+				}
+				storeMachineEntities.get(i).setSum(sum);
+				sumAll += storeMachineEntities.get(i).getSum();
+			}
+			graph(storeMachineEntities, sumAll);
+			statistics();
+			break;
+		}
+		case "3": {
+
+			statistics();
+			break;
+		}
+		default:
+			System.out.println("you input wrong program out to 4.2 finance");
+			finance();
+			break;
+		}
 	}
 
 }

@@ -2,10 +2,16 @@ package project.management.service.impl;
 
 import java.util.List;
 
+import project.management.entity.OrderItemEntity;
+import project.management.entity.OrderItemProductEntity;
 import project.management.entity.ProductEntity;
 import project.management.entity.StoreMachineEntity;
+import project.management.repository.IOrderItemProductRepository;
+import project.management.repository.IOrderItemRepository;
 import project.management.repository.IProductRepository;
 import project.management.repository.IStoreMachineRepository;
+import project.management.repository.impl.OrderItemProductRepository;
+import project.management.repository.impl.OrderItemRepository;
 import project.management.repository.impl.ProductRepository;
 import project.management.repository.impl.StoreMachineRepository;
 import project.management.service.IStatisticsService;
@@ -13,7 +19,8 @@ import project.management.service.IStatisticsService;
 public class StatisticsService implements IStatisticsService {
 	IProductRepository productRepository = new ProductRepository();
 	IStoreMachineRepository storeMachineRepository = new StoreMachineRepository();
-
+	IOrderItemRepository orderItemRepository = new OrderItemRepository(); 
+	IOrderItemProductRepository orderItemProductRepository = new OrderItemProductRepository();
 	@Override
 	public List<ProductEntity> findByMachine(int machineID) {
 		return productRepository.findByStoremachineid(machineID);
@@ -30,5 +37,17 @@ public class StatisticsService implements IStatisticsService {
 		productEntities = productRepository.findMinByStoremachine(id);
 		return productEntities;
 	}
+
+	@Override
+	public List<OrderItemEntity> findOrderitemByMachineid(int id) {
+		return orderItemRepository.findOrderitemByMachineid(id);
+	}
+
+	@Override
+	public List<OrderItemProductEntity> findProductByOrderitem(int id) {
+		return orderItemProductRepository.findOrderitemByMachineid(id);
+	}
+
+
 
 }

@@ -5,6 +5,7 @@ public class StoreMachineEntity {
 	private int userid;
 	private String name;
 	private String address;
+	private int sum;
 	private int status;
 	public int getId() {
 		return id;
@@ -35,6 +36,12 @@ public class StoreMachineEntity {
 	}
 	public void setStatus(int status) {
 		this.status = status;
+	}
+	public int getSum() {
+		return sum;
+	}
+	public void setSum(int sum) {
+		this.sum = sum;
 	}
 	
 }
