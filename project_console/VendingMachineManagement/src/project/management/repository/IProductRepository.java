@@ -12,5 +12,5 @@ public interface IProductRepository extends GenericRepository<ProductEntity> {
 	List<ProductEntity> findAll();
 	List<ProductEntity> findByStoremachineid(int storemachineId);
 	ProductEntity findMinByStoremachine(int id);
-	
+	ProductEntity findOneByIdAndStoremachineid(int productId, int storeMachineId);
 }

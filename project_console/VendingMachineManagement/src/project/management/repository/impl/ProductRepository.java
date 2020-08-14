@@ -57,6 +57,13 @@ public class ProductRepository extends AbstrachRepository<ProductEntity> impleme
 		return query(sql, new ProductMapper(), id).get(0);
 	}
 
+	@Override
+	public ProductEntity findOneByIdAndStoremachineid(int productId, int storeMachineId) {
+		String sql = "SELECT * FROM  product where id = ? and storemachineid = ?";
+		List<ProductEntity>  productEntity = query(sql, new ProductMapper(), productId, storeMachineId);
+		return productEntity.isEmpty() ? null : productEntity.get(0);
+	}
+
 	
 
 }

@@ -10,4 +10,5 @@ public interface IProductService {
 	void deleteProduct(int id);
 	List<ProductEntity> findAll();
 	ProductEntity findOneById(int id);
+	ProductEntity findOneByIdAndStoremachineid(int productId, int storeMachineId);
 }

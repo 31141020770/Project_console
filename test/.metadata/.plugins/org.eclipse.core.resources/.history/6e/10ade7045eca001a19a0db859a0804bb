@@ -1,7 +1,0 @@
-package Vending_Machine_3_machine;
-
-import Vending_Machine_3_machine.abstractMachine.abtractMachine;
-
-public class machine_1_drink extends abtractMachine{
-	product[0] = "milk";
-}

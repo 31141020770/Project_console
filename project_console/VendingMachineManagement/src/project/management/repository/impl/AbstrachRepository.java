@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import project.management.config.ConnectionFatory;
-import project.management.controlandmanagement.IProduct;
-import project.management.controlandmanagement.impl.Product;
+import project.management.controlandmanagement.IAdmin;
+import project.management.controlandmanagement.impl.Admin;
 import project.management.mapper.RowMapper;
 import project.management.repository.GenericRepository;
 
@@ -91,8 +91,8 @@ public class AbstrachRepository<T> implements GenericRepository<T> {
 				try {
 					System.out.println("update false!!! out to select !!! ");
 					connection.rollback();
-					IProduct product = new Product();
-					product.product();
+					IAdmin admin = new Admin();
+					admin.admin();
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -135,8 +135,10 @@ public class AbstrachRepository<T> implements GenericRepository<T> {
 		} catch (SQLException e) {
 			if (connection != null) {
 				try {
-					System.out.println("insert false!!! please input again or out!!! ");
+					System.out.println("insert false!!! please check information and input again!!! ");
 					connection.rollback();
+					IAdmin admin = new Admin();
+					admin.adminOption("1");
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}
@@ -159,6 +161,7 @@ public class AbstrachRepository<T> implements GenericRepository<T> {
 			}
 		}
 		return 0;
+		
 	}
 
 }

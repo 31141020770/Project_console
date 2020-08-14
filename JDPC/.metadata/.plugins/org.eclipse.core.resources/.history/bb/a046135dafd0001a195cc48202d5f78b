@@ -1,0 +1,59 @@
+package test;
+
+public class Main {
+
+	public static void main(String[] args) {
+		String[][] graph = new String[10][30];
+		String [] nameGraph = new String[20];
+		
+		for (int i = 0; i < graph.length; i++) {
+			for (int j = 0; j < 30; j++) {
+				if (i == 9 || j == 0) {
+					graph[i][0] = "*";
+					graph[9][j] = "*";
+				} else {
+					graph[i][j] = " ";
+				}
+			}
+		}
+		for (int i = 0; i < 30; i++) {
+			graph[9][i] = "*";
+		}
+		graph[0][0] = "^";
+		graph[8][2] = "*";
+		graph[7][3] = "*";
+		graph[6][4] = "*";
+		graph[0][1] = "Sum Money ";
+		for (int i = 8; i>=7; i--) {
+			for (int j = 1; j < 30; j++) {
+				if (j == 4 && i >= 7) {
+					graph[i][j] = "*";
+				}
+			}
+		}
+		/* graph[9- graph_1][3] = "*"; */
+
+		/*----------------- graph------------------------------ */
+
+		for (int i = 0; i < graph.length; i++) {
+			for (int j = 0; j < 30; j++) {
+				System.out.print(graph[i][j]);
+			}
+			System.out.println();
+		}
+		
+		for (int i = 0; i < nameGraph.length; i++) {
+			nameGraph[i] = " ";
+			nameGraph[3] = " M1   ";
+			nameGraph[6] = "  M2   ";
+			nameGraph[9] = "  M3";
+			System.out.print(nameGraph[i]);
+		}
+		System.out.println();
+		System.out.println("-------------------		--------------------");
+
+		/*----------------- graph------------------------------ */
+
+	}
+
+}

@@ -3,7 +3,14 @@ package project.management;
 public class Main {
 
 	public static void main(String[] args) {
-		new ControlAndManagement();
+		// start here
+		ControlAndManagement program = new ControlAndManagement(); // ^^%%
+		// think easy update, maintainance, your code cant re-use ( is OOP core concepts
+		program.run();
+
+		/*
+		 * program.terminate(); <-- end here
+		 */
 	}
 
 }

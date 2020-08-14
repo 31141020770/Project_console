@@ -40,4 +40,9 @@ public class ProductService implements IProductService {
 		return productRepository.findOne(id);
 	}
 
+	@Override
+	public ProductEntity findOneByIdAndStoremachineid(int productId, int storeMachineId) {
+		return productRepository.findOneByIdAndStoremachineid(productId, storeMachineId);
+	}
+
 }

@@ -1,7 +1,0 @@
-package Vending_Machine_3_machine.interfaceMachine.impl;
-
-import Vending_Machine_3_machine.interfaceMachine.IMachine2Food;
-
-public class Machine2Food implements IMachine2Food{
-
-}
